@@ -13,9 +13,9 @@
 ![Class Diagram](https://github.com/17billion/DistributedProcessingAppl/blob/master/DistributedProcessingAppl/class_diagram.gif)
 - Main Class
 	> 어플리케이션이 시작되는 Class
-- ProducerGroup
+- ProducerGroup Class
 	> Producer Thread를 실행시키는 Class
-- ProducerThread
+- ProducerThread Class
 	> 실제 Producing을 하는 Class <br>
 	> words.txt의 파일의 내용을 요구사항에 맞게 처리 후 ArrayList로 구성되어 있는 파티션(Queue)에 메세지를 추가 <br>
 	> seek 파라메터가 있을 경우 해당 위치부터 처리 시작  <br>
@@ -36,10 +36,9 @@
 - Constants Class
 	> Static Resource 관리
 
-
 ### 디렉토리 설명
-- 소스코드 디렉토리 : DistributedProcessingAppl
-- 실행 가능한 디렉토리(jar) : ExecutionDirectory
+- 소스코드 디렉토리 : DistributedProcessingAppl(<https://github.com/17billion/DistributedProcessingAppl/tree/master/DistributedProcessingAppl>)
+- 실행 가능한 디렉토리(jar) : ExecutionDirectory (<https://github.com/17billion/DistributedProcessingAppl/tree/master/ExecutionDirectory>)
 
 ### To start using DistributedProcessingAppl
 1) ExecutionDirectory 디렉토리 다운로드

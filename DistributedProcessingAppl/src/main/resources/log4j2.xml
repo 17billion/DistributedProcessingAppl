@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Configuration status="info" monitorInterval="60">
+	<Properties>
+		<Property name="LOG_DIR">.
+		</Property>
+		<Property name="DP_LOG_FILENAME">dp.log</Property>
+		<Property name="DP_ERR_LOG_FILENAME">dp_err.log</Property>
+		<Property name="DEFAULT_LAYOUT">%d [%t] %m%n</Property>
+	</Properties>
+
+	<Appenders>
+		<Console name="Console" target="SYSTEM_OUT">
+			<PatternLayout pattern="${DEFAULT_LAYOUT}" />
+		</Console>
+
+		<RollingRandomAccessFile name="DP"
+			fileName="${LOG_DIR}/${DP_LOG_FILENAME}" filePattern="${LOG_DIR}/${DP_LOG_FILENAME}.%d{yyyyMMddHH}">
+			<PatternLayout>
+				<pattern>${DEFAULT_LAYOUT}</pattern>
+			</PatternLayout>
+			<Policies>
+				<TimeBasedTriggeringPolicy interval="1"
+					modulate="true" />
+			</Policies>
+			<DefaultRolloverStrategy>
+				<Delete basePath="${LOG_DIR}" maxDepth="1">
+					<IfFileName glob="${DP_LOG_FILENAME}*">
+						<IfLastModified age="5d" />
+					</IfFileName>
+				</Delete>
+			</DefaultRolloverStrategy>
+		</RollingRandomAccessFile>
+
+		<RollingRandomAccessFile name="MC_ERR"
+			fileName="${LOG_DIR}/${DP_ERR_LOG_FILENAME}" filePattern="${LOG_DIR}/${DP_ERR_LOG_FILENAME}.%d{yyyyMMddHH}">
+			<PatternLayout>
+				<pattern>${DEFAULT_LAYOUT}</pattern>
+			</PatternLayout>
+			<Policies>
+				<TimeBasedTriggeringPolicy interval="1"
+					modulate="true" />
+			</Policies>
+			<DefaultRolloverStrategy>
+				<Delete basePath="${LOG_DIR}" maxDepth="1">
+					<IfFileName glob="${DP_ERR_LOG_FILENAME}*">
+						<IfLastModified age="5d" />
+					</IfFileName>
+				</Delete>
+			</DefaultRolloverStrategy>
+		</RollingRandomAccessFile>
+	</Appenders>
+
+	<Loggers>
+		<Logger name="com.distributed.processing" level="info" additivity="false">
+			<AppenderRef ref="Console" />
+			<AppenderRef ref="DP" />
+			<AppenderRef ref="DP_ERR" level="warn" />
+		</Logger>
+		<Root level="error">
+			<AppenderRef ref="Console" />
+			<AppenderRef ref="DP_ERR" />
+		</Root>
+	</Loggers>
+
+</Configuration>

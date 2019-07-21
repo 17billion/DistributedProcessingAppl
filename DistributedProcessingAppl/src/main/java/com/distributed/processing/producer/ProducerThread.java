@@ -35,10 +35,12 @@ public class ProducerThread implements Runnable {
 		int cnt = 0;
 		Boolean complFlag = false;
 		//HashMap<String, Integer> wordWareHouse = new HashMap<String, Integer>();
+		String word = "";
 		while (true) {
-			String threadStatus = ofrw.readFile(Constants._THREAD_STATUS_FILE);
+			String threadStatus = ofrw.readFile(Constants._THREAD_STATUS_FILE);			
 			if (threadStatus.contains(Constants._THREAD_STOP_STATUS)) {
 				LOGGER.info("[{}] {} ", "PRODUCER", "THREAD TERMINATED");
+				LOGGER.info("[{}] {} ", "PRODUCER", "LAST WORD : " + word+ " (SEEK : " + startSeek+")" + " line : " + cnt);
 				Thread.currentThread().interrupt();
 				return;
 			}
@@ -50,10 +52,13 @@ public class ProducerThread implements Runnable {
 				e1.printStackTrace();
 			} 
 			
+			
+			
 			if (wordList.size() == 0) {
 				try {
 					if (complFlag) {
 						LOGGER.info("[{}] {} ", "PRODUCER", cnt + " lines processing is complete.");
+						
 						complFlag=false;
 					}
 					Thread.sleep(10000);
@@ -64,7 +69,7 @@ public class ProducerThread implements Runnable {
 			}
 
 			
-			String word = "";
+			
 			for (Record record : wordList) {
 				if (record.getWord().length() == 0) {
 					continue;

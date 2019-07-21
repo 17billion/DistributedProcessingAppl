@@ -20,7 +20,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		ObjectFileRWriter ofr = new ObjectFileRWriter();
-		if (args.length < 3) {
+		/*if (args.length < 3) {
 			LOGGER.error("[{}] {} ", "INIT", "Please correct parameter. ex) words.txt result/ 7 10(Not Required)");
 			for (int i = 0; i < args.length; i++) {
 				LOGGER.error("[{}] {} ", "INIT", "Inputed parameters > (" + i + ") : " + args[i]);
@@ -40,12 +40,12 @@ public class Main {
 			if(args[3] != ""){
 				startSeek = Long.valueOf(args[3]);
 			} 
-		}
+		}*/
 
-		/*String fileName = "words.txt";
+		String fileName = "words.txt";
 		String resultDirectory = "result/";
 		int partitionCnt = 28;
-		Long startSeek = 0L; */
+		Long startSeek = 0L; 
 
 
 		if(partitionCnt == 0) partitionCnt = 1;

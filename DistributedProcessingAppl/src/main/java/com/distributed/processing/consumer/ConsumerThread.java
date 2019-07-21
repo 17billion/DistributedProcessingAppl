@@ -36,6 +36,7 @@ public class ConsumerThread implements Runnable {
 				String threadStatus = ofrw.readFile(Constants._THREAD_STATUS_FILE);
 				if (threadStatus.contains(Constants._THREAD_STOP_STATUS)) {
 					LOGGER.info("[{}] {} ", "CONSUMER", "THREAD TERMINATED");
+					LOGGER.info("[{}] {} ", "CONSUMER", "LAST WORD : " + word + " (SEEK : " + seek+")");	
 					Thread.currentThread().interrupt();
 					return;
 				}

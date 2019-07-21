@@ -37,8 +37,8 @@
 	> Static Resource 관리
 
 ### 디렉토리 설명
-- 소스코드 디렉토리 : DistributedProcessingAppl(<https://github.com/17billion/DistributedProcessingAppl/tree/master/DistributedProcessingAppl>)
-- 실행 가능한 디렉토리(jar) : ExecutionDirectory (<https://github.com/17billion/DistributedProcessingAppl/tree/master/ExecutionDirectory>)
+- 소스코드 디렉토리 : <a href ='https://github.com/17billion/DistributedProcessingAppl/tree/master/DistributedProcessingAppl'>DistributedProcessingAppl</a>
+- 실행 가능한 디렉토리(jar) : <a href ='https://github.com/17billion/DistributedProcessingAppl/tree/master/ExecutionDirectory'> ExecutionDirectory </a>
 
 ### To start using DistributedProcessingAppl
 1) ExecutionDirectory 디렉토리 다운로드

@@ -28,15 +28,18 @@ public class ConsumerThread implements Runnable {
 
 	public void run() {
 		int cnt = 0;
+		int duplCnt = 0;
 		String word = "";
 		Boolean complFlag = false;
 		Long seek = 0L;
 		while (!Thread.currentThread().isInterrupted()) {
 			for (int pNum = 0; pNum < recordPartition.size(); pNum++) {
 				String threadStatus = ofrw.readFile(Constants._THREAD_STATUS_FILE);
-				if (threadStatus.contains(Constants._THREAD_STOP_STATUS)) {
-					LOGGER.info("[{}] {} ", "CONSUMER", "THREAD TERMINATED");
-					LOGGER.info("[{}] {} ", "CONSUMER", "LAST WORD : " + word + " (SEEK : " + seek+")");	
+				if (threadStatus.contains(Constants._THREAD_STOP_STATUS)) {					
+					LOGGER.info("[{}] {} ", "CONSUMER", "LAST WORD : " + word + " (SEEK : " + seek+")");
+					LOGGER.debug("[{}] {} ", "CONSUMER","Duplicate Count : " + duplCnt);
+					LOGGER.debug("[{}] {} ", "CONSUMER","Apply Count : " + wordWareHouse.size());					
+					LOGGER.info("[{}] {} ", "CONSUMER", "THREAD TERMINATED");						
 					Thread.currentThread().interrupt();
 					return;
 				}
@@ -62,6 +65,7 @@ public class ConsumerThread implements Runnable {
 				}
 				
 				cnt++;
+				
 				Record  r = recordPartition.get(pNum).poll();
 				word = r.getWord();
 				seek = r.getSeekNum();
@@ -71,6 +75,7 @@ public class ConsumerThread implements Runnable {
 				String wordLower = word.toLowerCase();
 				String FirstStr = wordLower.substring(0, 1);
 				if (wordWareHouse.containsKey(wordLower)) {
+					duplCnt++;
 					continue;
 				}
 				if (Pattern.matches("^[0-9]*$", FirstStr)) {

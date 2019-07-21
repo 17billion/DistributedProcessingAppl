@@ -1,4 +1,5 @@
 # DistributedProcessingAppl
+
 ### 주요 고려사항
 1) 요구사항에 맞게 프로세스 처리
 2) 프로세스 실행 시 Producer, Consumer 각각 그룹으로 생성하여 싱글 스레드로 처리
@@ -19,33 +20,33 @@
 - ProducerGroup
 	> Producer Thread를 실행시키는 Class
 - ProducerThread
-	> 실제 Producing을 하는 Class
-	> words.txt의 파일의 내용을 요구사항에 맞게 처리 후 ArrayList로 구성되어 있는 파티션(Queue)에 메세지를 추가
-	> seek가 있을 경우 해당 위치부터 처리 시작 
-	> 10000개씩 처리 되거나 더 이상 처리할 Word가 없을 경우 로그에 기록 
-	> THREAD-STATUS 파일의 내용이 stop으로 변경될 경우 종료
+	> 실제 Producing을 하는 Class <br>
+	> words.txt의 파일의 내용을 요구사항에 맞게 처리 후 ArrayList로 구성되어 있는 파티션(Queue)에 메세지를 추가 <br>
+	> seek가 있을 경우 해당 위치부터 처리 시작  <br>
+	> 10000개씩 처리 되거나 더 이상 처리할 Word가 없을 경우 로그에 기록  <br>
+	> THREAD-STATUS 파일의 내용이 stop으로 변경될 경우 종료 <br>
 - ConsumerGroup Class
 	> Consumer Thread를 실행시키는 Class
 - ConsumerThread Class
-	> 실제 Consuming을 하는 Class 
-	> ArrayList로 된 각 파티션(Queue)내 Word를 poll하여 요구사항에 맞게 처리 
-	> 10000개씩 처리 되거나 더이상 읽을 Word가 없을 경우 로그에 기록 
-	> THREAD-STATUS 파일의 내용이 stop으로 변경될 경우 종료
+	> 실제 Consuming을 하는 Class  <br>
+	> ArrayList로 된 각 파티션(Queue)내 Word를 poll하여 요구사항에 맞게 처리  <br>
+	> 10000개씩 처리 되거나 더이상 읽을 Word가 없을 경우 로그에 기록  <br>
+	> THREAD-STATUS 파일의 내용이 stop으로 변경될 경우 종료 <br>
 - ObjectFileRWriter Class 
 	> 파일 입출력을 담당하는 Class
 
 ### 디렉토리 설명
 - 소스코드 디렉토리 : DistributedProcessingAppl
-- 실행 가능한 디렉토리(jar) : DistributedProcessingAppl
+- 실행 가능한 디렉토리(jar) : ExecutionDirectory
 
 ### To start using DistributedProcessingAppl
 1) ExecutionDirectory 디렉토리 다운로드
 2) $ cd ExecutionDirectory
 3) java -jar DistributedPocessing-0.1.jar {FileName} {Result Directory} {Partition  Count} {SEEK(NOT REQUIRED)} 실행
-- ex 1) java -jar DistributedPocessing-0.1.jar word.txt result/ 7
-- ex 2) java -jar DistributedPocessing-0.1.jar word.txt result/ 7 1519591 (gaine 단어부터 처리를 원할 경우)
+	> ex 1) java -jar DistributedPocessing-0.1.jar word.txt result/ 7  <br>
+	> ex 2) java -jar DistributedPocessing-0.1.jar word.txt result/ 7 1519591 (gaine 단어부터 처리를 원할 경우)
 4) 종료 시 THREAD-STATUS의 파일 내용을 stop으로 변경 후 저장
 
 ### 문의사항
-Email. 17earlgrey@gmail.com
+Email. 17earlgrey@gmail.com <br>
 Blog. https://17billion.github.io/

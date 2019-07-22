@@ -45,7 +45,7 @@
 2) $ cd ExecutionDirectory
 3) $ java -jar DistributedPocessing-0.1.jar {FileName} {Result Directory} {Partition  Count} {SEEK(NOT REQUIRED)} 실행
 	> ex 기본) $ java -jar DistributedPocessing-0.1.jar word.txt result/ 7  <br>
-	> ex 추가 파라메터) $ java -jar DistributedPocessing-0.1.jar word.txt result/ 7 3307412 (진행 중 각 Word별 위치 정보를 저장 (10,000개씩 처리될 때마다 로그에 위치 기록하도록 설정 / 위치 정보 : seek))
+	> ex 추가 파라메터) $ java -jar DistributedPocessing-0.1.jar word.txt result/ 7 3307412 (32000 라인의 pugmill 이후부터(pugmiller) 처리를 원할 경우)
 4) 종료 시 THREAD-STATUS의 파일 내용을 "stop"으로 변경 후 저장
 
 ### 문의사항

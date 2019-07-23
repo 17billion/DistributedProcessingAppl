@@ -25,7 +25,7 @@
 	> Consumer Thread를 실행시키는 Class
 - ConsumerThread Class
 	> 실제 Consuming을 하는 Class  <br>
-	> 파티션 갯수와 동일한 Thread 생성(생성된 순서대로 파티션의 메세지 소비)
+	> 파티션 갯수와 동일한 Thread 생성(생성된 순서대로 파티션의 메세지 소비) <br>
 	> 각 파티션(Queue) 내 Word를 poll하여 요구사항에 맞게 처리  <br>
 	> Thread 별 10000개씩 처리 되거나 더이상 읽을 Word가 없을 경우 로그에 기록  <br>
 	> THREAD-STATUS 파일의 내용이 "stop"으로 변경될 경우 종료 <br>

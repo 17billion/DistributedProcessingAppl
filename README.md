@@ -1,11 +1,11 @@
 # DistributedProcessingAppl
 
 ### 주요 고려사항
-1) 요구사항에 맞게 프로세스를 처리
+1) 요구사항에 맞게 프로세스 처리
 2) 프로세스 실행 시 Producer, Consumer 각각 그룹으로 생성하여 Producer는 Single Thread, Consumer는 Multi Thread로 처리
 3) 중간에 강제로 프로세스가 종료되어도 재실행 시 파라메터를 통해 시작점을 지정 가능하도록 설계 (4번째 파라메터 : seek / NOT REQUIRED)
 	> 진행 중 각 Word별 위치 정보를 저장 (Thread 별 10,000개씩 처리될 때마다 로그에 위치 기록하도록 설정 / 위치 정보 : seek)
-4) 프로세스 실행 중 words.txt 파일에 추가적으로 append되어도 실시간으로 처리가능
+4) 프로세스 실행 중 words.txt 파일에 추가적으로 append되어도 실시간 처리가능
 5) 외부에서 인터럽트를 통해 프로세스 종료가능 (THREAD-STATUS 파일의 내용을 "stop"으로 변경 후 저장 시 프로세스 종료)
 6) 경과 사항을 로그에 기록 (dp.log, dp_err.log)
 

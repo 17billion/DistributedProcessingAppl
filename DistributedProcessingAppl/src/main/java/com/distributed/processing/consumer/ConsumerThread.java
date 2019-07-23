@@ -64,9 +64,6 @@ public class ConsumerThread implements Runnable {
 				try{
 				word = r.getWord();
 				} catch (NullPointerException e) {
-					System.out.println("recordPartition.get(pNum) : "  +recordPartition.get(pNum).toString());
-					System.out.println("r.toString() : "  +r.toString());
-					System.out.println("계속 발생한다고?");
 					continue;
 				}
 				seek = r.getSeekNum();

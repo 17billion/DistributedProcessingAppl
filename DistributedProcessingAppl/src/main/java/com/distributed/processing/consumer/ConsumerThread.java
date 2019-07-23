@@ -19,11 +19,12 @@ public class ConsumerThread implements Runnable {
 	int partitionCnt;
 	ArrayList<Queue<Record>> recordPartition;
 	ObjectFileRWriter ofrw = new ObjectFileRWriter();
-	HashMap<String, String> wordWareHouse = new HashMap<String, String>();
+	int pNum;
 
-	public ConsumerThread(String resultDirectory, int partitionCnt, ArrayList<Queue<Record>> recordPartition) {
+	public ConsumerThread(String resultDirectory, int pNum, ArrayList<Queue<Record>> recordPartition) {
 		this.resultDirectory = resultDirectory;
 		this.recordPartition = recordPartition;
+		this.pNum = pNum;
 	}
 
 	public void run() {
@@ -32,49 +33,49 @@ public class ConsumerThread implements Runnable {
 		String word = "";
 		Boolean complFlag = false;
 		Long seek = 0L;
+		LOGGER.info("[{}] THREAD_ID={} ", "CONSUMER THREAD START", Thread.currentThread().getId());
 		while (!Thread.currentThread().isInterrupted()) {
-			for (int pNum = 0; pNum < recordPartition.size(); pNum++) {
-				String threadStatus = ofrw.readFile(Constants._THREAD_STATUS_FILE);
-				if (threadStatus.contains(Constants._THREAD_STOP_STATUS)) {					
-					LOGGER.info("[{}] {} ", "CONSUMER", "LAST WORD : " + word + " (SEEK : " + seek+")");
-					LOGGER.debug("[{}] {} ", "CONSUMER","Duplicate Count : " + duplCnt);
-					LOGGER.debug("[{}] {} ", "CONSUMER","Apply Count : " + wordWareHouse.size());					
-					LOGGER.info("[{}] {} ", "CONSUMER", "THREAD TERMINATED");						
-					Thread.currentThread().interrupt();
-					return;
-				}
-				
-				if (recordPartition.get(pNum).size() == 0) {
-					try {
-						if(cnt==0 && pNum != 0){
-							pNum=-1;
-						} else{
-							pNum--;
-						}
-						
-						if (complFlag) {
-							LOGGER.info("[{}] {} ", "CONSUMER", "WORD : " + word + " (SEEK : " + seek+")");		
-							LOGGER.info("[{}] {} ", "CONSUMER", "Consumer processing is complete (SEEK : " + seek+")");
-							complFlag=false;							
-						}						
-						Thread.sleep(1000);						
-						continue;
-					} catch (InterruptedException e) {
+			String threadStatus = ofrw.readFile(Constants._THREAD_STATUS_FILE);
+			if (threadStatus.contains(Constants._THREAD_STOP_STATUS)) {
+				LOGGER.info("[{}] {} ", "CONSUMER", "LAST WORD : " + word + " (SEEK : " + seek + ")");
+				LOGGER.info("[{}] {} ", "CONSUMER", "Duplicate Count : " + duplCnt);
+				LOGGER.info("[{}] {} ", "CONSUMER", "Apply Count : " + Constants.wordWareHouse.size());
+				LOGGER.info("[{}] {} ", "CONSUMER", "THREAD TERMINATED");
+				Thread.currentThread().interrupt();
+				return;
+			}
 
+			if (recordPartition.get(pNum).size() < 1) {
+				try {
+
+					if (complFlag) {
+						LOGGER.info("[{}] {} ", "CONSUMER", "WORD : " + word + " (SEEK : " + seek + ")");
+						LOGGER.info("[{}] {} ", "CONSUMER", "Consumer processing is complete (SEEK : " + seek + ")");
+						complFlag = false;
 					}
+					Thread.sleep(1000);
+					continue;
+				} catch (InterruptedException e) {
+
 				}
-				
+			} else if(recordPartition.get(pNum)!=null){
 				cnt++;
-				
-				Record  r = recordPartition.get(pNum).poll();
+				Record r = recordPartition.get(pNum).poll();
+				try{
 				word = r.getWord();
+				} catch (NullPointerException e) {
+					System.out.println("recordPartition.get(pNum) : "  +recordPartition.get(pNum).toString());
+					System.out.println("r.toString() : "  +r.toString());
+					System.out.println("계속 발생한다고?");
+					continue;
+				}
 				seek = r.getSeekNum();
-				if(cnt % 10000  == 0){
-					LOGGER.info("[{}] {} ", "CONSUMER", "WORD : " + word + " (SEEK : " + seek+")");		
+				if (cnt % 10000 == 0) {
+					LOGGER.info("[{}] {} ", "CONSUMER", "WORD : " + word + " (SEEK : " + seek + ")");
 				}
 				String wordLower = word.toLowerCase();
 				String FirstStr = wordLower.substring(0, 1);
-				if (wordWareHouse.containsKey(wordLower)) {
+				if (Constants.getEqualWordWareHouse(wordLower)) {					
 					duplCnt++;
 					continue;
 				}
@@ -83,8 +84,8 @@ public class ConsumerThread implements Runnable {
 				} else {
 					ofrw.writeFile(resultDirectory + "/" + FirstStr + Constants._STR_TXT, word, Constants._STR_APPEND);
 				}
-				wordWareHouse.put(wordLower, word);
-				complFlag=true;
+				Constants.addWordWareHouse(wordLower, word);
+				complFlag = true;
 			}
 		}
 	}

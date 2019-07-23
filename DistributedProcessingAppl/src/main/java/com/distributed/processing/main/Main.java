@@ -45,7 +45,7 @@ public class Main {
 		/*String fileName = "words.txt";
 		String resultDirectory = "result/";
 		int partitionCnt = 28;
-		Long startSeek = 0L; */
+		Long startSeek = 0L;*/ 
 
 
 		if(partitionCnt == 0) partitionCnt = 1;

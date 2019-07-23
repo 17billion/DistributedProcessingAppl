@@ -5,7 +5,7 @@
     project="DistributedProcessingAppl" 
     file="/DistributedProcessingAppl/src/main/java/com/distributed/processing/consumer/ConsumerGroup.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="583" y="99"/>    
+    <position height="-1" width="-1" x="764" y="44"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -16,7 +16,7 @@
     project="DistributedProcessingAppl" 
     file="/DistributedProcessingAppl/src/main/java/com/distributed/processing/producer/ProducerGroup.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1200" y="93"/>    
+    <position height="-1" width="-1" x="425" y="39"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -27,7 +27,7 @@
     project="DistributedProcessingAppl" 
     file="/DistributedProcessingAppl/src/main/java/com/distributed/processing/consumer/ConsumerThread.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="583" y="406"/>    
+    <position height="-1" width="-1" x="764" y="245"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -37,7 +37,7 @@
   <class id="4" language="java" name="com.distributed.processing.common.Constants" project="DistributedProcessingAppl" 
     file="/DistributedProcessingAppl/src/main/java/com/distributed/processing/common/Constants.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="277" y="159"/>    
+    <position height="-1" width="-1" x="134" y="282"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -48,7 +48,7 @@
     project="DistributedProcessingAppl" 
     file="/DistributedProcessingAppl/src/main/java/com/distributed/processing/producer/ProducerThread.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1200" y="411"/>    
+    <position height="-1" width="-1" x="423" y="237"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -58,7 +58,7 @@
   <class id="6" language="java" name="com.distributed.processing.producer.vo.Record" project="DistributedProcessingAppl" 
     file="/DistributedProcessingAppl/src/main/java/com/distributed/processing/producer/vo/Record.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="264" y="401"/>    
+    <position height="-1" width="-1" x="107" y="537"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -69,7 +69,7 @@
     project="DistributedProcessingAppl" 
     file="/DistributedProcessingAppl/src/main/java/com/distributed/processing/utils/ObjectFileRWriter.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="891" y="406"/>    
+    <position height="-1" width="-1" x="763" y="478"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -79,7 +79,7 @@
   <class id="8" language="java" name="com.distributed.processing.main.Main" project="DistributedProcessingAppl" 
     file="/DistributedProcessingAppl/src/main/java/com/distributed/processing/main/Main.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="887" y="115"/>    
+    <position height="-1" width="-1" x="137" y="58"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -87,27 +87,27 @@
     </display>  
   </class>  
   <association id="9">    
-    <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="10" name="pThread"/>      
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="10" name="ofrw"/>      
       <multiplicity id="11" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="5" navigable="true"/>    
+    <end type="TARGET" refId="7" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="12">    
     <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="13" name="cThread"/>      
-      <multiplicity id="14" minimum="0" maximum="1"/>    
+      <attribute id="13" name="cThreads"/>      
+      <multiplicity id="14" minimum="0" maximum="2147483647"/>    
     </end>    
     <end type="TARGET" refId="3" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="15">    
-    <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="16" name="ofrw"/>      
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="16" name="pThread"/>      
       <multiplicity id="17" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="7" navigable="true"/>    
+    <end type="TARGET" refId="5" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 

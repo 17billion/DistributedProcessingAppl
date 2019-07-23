@@ -1,5 +1,6 @@
 package com.distributed.processing.common;
 
+import java.util.HashMap;
 
 public class Constants {
 	public static final String PROC_START_TIME = "_"+System.currentTimeMillis();
@@ -12,5 +13,14 @@ public class Constants {
 	public static final String _NUMBER_TXT = "number.txt";
 	public static final String _STR_TXT = ".txt";
 	
+	public static HashMap<String, String> wordWareHouse = new HashMap<String, String>();
+	public synchronized static void addWordWareHouse(String wordLower, String word) {
+		Constants.wordWareHouse.put(wordLower, word);
+    }
+	public synchronized static Boolean getEqualWordWareHouse(String wordLower) {
+		if(Constants.wordWareHouse.containsKey(wordLower)) return true;
+		return false;
+    }
+
 	
 }

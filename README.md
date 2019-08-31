@@ -1,5 +1,5 @@
 # DistributedProcessingAppl
-### 프
+### 프로젝트
 　 - words.txt 파일의 단어를 복수의 파일로 분리하는 프로그램을 객체 지향 설계의 SOLID 원칙에 따라 구현 <br>
 　　　· https://ko.wikipedia.org/wiki/SOLID_(객체_지향_설계) <br>
 
